@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>;
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+
+<form method="post" enctype="multipart/form-data" class="form-group">
+    <h4>@TempData["error"]</h4>
+    <div class="dropdown">
+        <select class="custom-select" aria-labelledby="dropdownMenuButton" style="width:50%" name="categoryName">
+            @foreach (var item in Model)
+            {
+                <option class="dropdown-item" value="@item.Name">@item.Name</option>
+            }
+        </select>
+    </div>
+    <br />
+    <input class="form-control" style="width:50%" type="text" name="title" placeholder="title" />
+    <br />
+    <input class="form-control" style="width:50%" type="text" name="subtitle" placeholder="subtitle" />
+    <br />
+    <input class="form-control" style="width:50%" type="datetime" name="publishedDate" placeholder="publis date" />
+    <br />
+    <input type="file" name="photoFile" />
+
+    <br />
+    <br />
+
+    <meta charset="utf-8">
+    <script src="../ckeditor.js"></script>
+    <textarea name="htmlContent" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor 4.
+       </textarea>
+    <script>
+            CKEDITOR.replace('editor1');
+    </script>
+    <button class="btn btn-success btn-lg  " style="margin-top:20px;" type="submit" asp-controller="Admin" asp-action="CreateNews">Create</button>
+</form>
