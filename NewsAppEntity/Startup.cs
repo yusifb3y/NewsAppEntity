@@ -42,7 +42,6 @@ namespace NewsAppEntity
             services.AddScoped<INewsService,NewsServiceImpl>();
             services.AddScoped<IPhotoService,PhotoServiceImpl>();
             services.AddScoped<IUserService,UserServiceImpl>();
-            services.AddScoped<ISearchService,SearchServiceImpl>();
             services.AddAutoMapper(typeof(Startup));
         }
 

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore.Internal;
 using NewsAppEntity.Models;
 using NewsAppEntity.Models.Resources;
 using NewsAppEntity.Repository;
@@ -52,7 +51,7 @@ namespace NewsAppEntity.Service.Implements
         {
             News news = GetById(id);
             Photo photo = _photoService.GetPhotoById(news.PhotoId);
-           if(File.Exists(photo.FileTarget))
+            if (File.Exists(photo.FileTarget))
                 File.Delete(photo.FileTarget);
             _dbContext.Photos.Remove(photo);
             _dbContext.News.Remove(news);
@@ -88,73 +87,6 @@ namespace NewsAppEntity.Service.Implements
                   photo => photo.Id,
                   (news, photo) => new
                   {
-                        news2 = news,
-                        photo2=photo
-                  }).ToList();
-            List<News> news = new List<News>();
-            foreach(var data in query)
-            {
-                News _news = new News();
-                _news = data.news2;
-                _news.Photo = data.photo2;
-                news.Add(_news);
-            }
-            return news;
-        }
-
-        public IEnumerable<News> GetAllActivesByCategoryName(string categoryName)
-        {
-            int categoryId = _categoryService.GetByCategoryName(categoryName).Id;
-            var query = _dbContext.News.Where
-                (s => categoryId == s.CategoryId && s.IsActive == true && s.PublishedDate <= DateTime.Now).Join(_dbContext.Photos,
-                  news => news.PhotoId,
-                  photo => photo.Id,
-                  (news, photo) => new
-                  {
-                      news2 = news,
-                      photo2 = photo
-                  }).ToList();
-            List<News> news = new List<News>();
-            foreach (var data in query)
-            {
-                News _news = new News();
-                _news = data.news2;
-                _news.Photo = data.photo2;
-                news.Add(_news);
-            }
-            return news;
-        }
-
-        public IEnumerable<News> GetAllActivesByPublishDate(DateTime dateTime)
-        {
-            var query = _dbContext.News.Where
-                (s => s.PublishedDate.Date == dateTime.Date && s.IsActive == true && s.PublishedDate <= DateTime.Now).Join(_dbContext.Photos,
-                  news => news.PhotoId,
-                  photo => photo.Id,
-                  (news, photo) => new
-                  {
-                      news2 = news,
-                      photo2 = photo
-                  }).ToList();
-            List<News> news = new List<News>();
-            foreach (var data in query)
-            {
-                News _news = new News();
-                _news = data.news2;
-                _news.Photo = data.photo2;
-                news.Add(_news);
-            }
-            return news;
-        }
-
-        public IEnumerable<News> GetAllActivesByTitle(string title)
-        {
-            var query = _dbContext.News.Where
-                (s => s.Title == title && s.IsActive == true && s.PublishedDate <= DateTime.Now).Join(_dbContext.Photos,
-                  news => news.PhotoId,
-                  photo => photo.Id,
-                  (news, photo) => new
-                  {
                       news2 = news,
                       photo2 = photo
                   }).ToList();
@@ -179,7 +111,7 @@ namespace NewsAppEntity.Service.Implements
                       news2 = news,
                       photo2 = photo
                   }).First();
-            
+
             if (query.news2 != null)
             {
                 News news = query.news2;
