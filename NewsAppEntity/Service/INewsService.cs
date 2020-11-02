@@ -1,5 +1,7 @@
-﻿using NewsAppEntity.Models;
+﻿using Microsoft.VisualBasic;
+using NewsAppEntity.Models;
 using NewsAppEntity.Models.Resources;
+using System;
 using System.Collections.Generic;
 
 namespace NewsAppEntity.Service
@@ -13,5 +15,9 @@ namespace NewsAppEntity.Service
         public void UpdateIsActive(int id,int bit);
         public void Delete(int id);
         public IEnumerable<News> GetAllActives();
+        public IEnumerable<News> GetAllActivesByCategoryName(string categoryName);
+        public IEnumerable<News> GetAllActivesByPublishDate(DateTime dateTime);
+        public IEnumerable<News> GetAllActivesByTitle(string title);
+
     }
 }

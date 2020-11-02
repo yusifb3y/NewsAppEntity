@@ -1,5 +1,4 @@
-﻿using NewsAppEntity.Models;
-using NewsAppEntity.Models.Resources;
+﻿using NewsAppEntity.Models.Resources;
 using System.Security.Claims;
 
 namespace NewsAppEntity.Service

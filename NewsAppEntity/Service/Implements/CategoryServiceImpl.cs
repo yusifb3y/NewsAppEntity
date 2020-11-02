@@ -72,7 +72,7 @@ namespace NewsAppEntity.Service.Implements
 
         public void UpdateStatus(int id,bool bit)
         {
-            Category _category = _dbContext.Categories.Where(s => s.Id == id).FirstOrDefault();
+            Category _category = _dbContext.Categories.Where(s => s.Id == id).First();
             if (_category != null)
             {
                 _category.IsActive = bit;
@@ -85,7 +85,7 @@ namespace NewsAppEntity.Service.Implements
         }
         public IEnumerable<Category> GetAllActives()//for users
         {
-            return _dbContext.Categories.Select(x => x).Where(s => s.IsActive==true);
+            return _dbContext.Categories.Where(s => s.IsActive==true).Select(x => x);
         }
 
         public void UpdateIsActive(int id, int bit)

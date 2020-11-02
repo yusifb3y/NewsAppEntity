@@ -1,6 +1,262 @@
-﻿@model IEnumerable<Category>;
+﻿@model NewsAppEntity.Models.ViewModels.HomeIndex;
 
-@foreach (var item in Model)
-{
-    <h5>@item.Name</h5>
-}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Tag Manager -->
+    <script>
+(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M6D3ZC7');</script>
+    <!-- End Google Tag Manager -->
+
+    <title>Ana Səhifə</title>
+    <link rel="shortcut icon" href="~/assets/name.ico" />
+    <link rel="stylesheet" type="text/css" href="~/css/hashtag.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6D3ZC7" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+
+    <nav style="background-color: rgb(37, 37, 80); font-family: 'Poppins', sans-serif;" class="navbar  sticky-top navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="~/assets/name.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+            <strong>XəbərHub</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="mb-2 navbar-nav mr-auto">
+                <li class="nav-item dropdown pl-4">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Kateqoriyalar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var item in Model.Categories) 
+                        {
+                        <a class="dropdown-item" href="#">@item.Name</a>
+                        <div class="dropdown-divider"></div>
+                        }
+                    </div>
+                </li>
+                <li class="nav-item pl-4">
+                    <a class="nav-link" href="/apply">Muraciət</a>
+                </li>
+                <li class="nav-item pl-4">
+                    <a class="nav-link" href="#another">Xəbərlər</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 row" method="get">
+                <div class="input-group">
+                    <input style="width: 180px;" class="form-control mb-1 ml-2 mr-2" type="text" name="title" placeholder="Axtarış"
+                           aria-label="Search">
+                    <input style="width: 180px;" class="mb-1 mr-2 ml-2 form-control" type="date" name="dateTime">
+                </div>
+                <div class="input-group" style="justify-content: flex-end;">
+                    <button class="btn btn-outline-light mr-2 mb-1 ml-2 " type="submit" asp-controller="Home" asp-action="Search">Axtarış</button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @{ int i = 1;}
+            @foreach (var item in Model.News)
+            {
+                if (i == 1)
+                {
+                    <div class="carousel-item active justify-content-center" data-interval="10000">
+                        <div class="row justify-content-center" style="margin-left: 2vw;margin-right:2vw;margin-top:5vh;">
+                            <div class="ww">
+                                <div class="blog-card shadow">
+                                    <div class="meta">
+                                        <div class="photo"
+                                             style="background-image: url(~/images/@item.Photo.FileName)">
+                                        </div>
+                                    </div>
+                                    <a href="~/folder/index.html" style="text-decoration: none;">
+                                        <div class="description">
+                                            <h1>@item.Title</h1>
+                                            <h2>@item.Subtitle</h2>
+                                            <p>
+                                                @item.HtmlContent
+                                            </p>
+                                            <p class="read-more">
+                                                <a href="~/folder/index.html">Daha çox..</a>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                if (i > 1)
+                {
+                    <div class="carousel-item justify-content-center" data-interval="2000">
+                        <div class="row justify-content-center" style="margin-left: 2vw;margin-right:2vw;margin-top:5vh;">
+                            <div class="ww">
+                                <div class="blog-card shadow">
+                                    <div class="meta">
+                                        <div class="photo" style="background-image: url(~/images/@item.Photo.FileName);"></div>
+                                    </div>
+                                    <a href="~/folder/index.html" style="text-decoration: none;">
+                                        <div class="description">
+                                            <h1>@item.Title</h1>
+                                            <h2>@item.Subtitle</h2>
+                                            <p>
+                                               @item.HtmlContent
+                                            </p>
+                                            <p class="read-more">
+                                                <a href="~/folder/index.html">Daha çox..</a>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                i++;
+                if (i == 5)
+                    break;
+            }
+         
+        <a class="carousel-control-prev" style="width:10vw" href="#carouselExampleInterval" role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" style="width:10vw" href="#carouselExampleInterval" role="button"
+           data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+
+
+
+
+    <div class='row container justify-content-center' style="margin:auto;" id="demo">
+
+    </div>
+    <script>
+
+    var elements = [
+        {name:'#SIYASET',link:'/muraciet'},
+        {name:'#QARABAĞ',link:'/muraciet'},
+        {name:'#FUTBOL',link:'/muraciet'},
+        {name:'#İQTİSADİYYAT',link:'/muraciet'},
+        {name:'#TƏHSİL',link:'/muraciet'},
+        {name:'#TEXNOLOGİYALAR',link:'../muraciet.html'},
+        {name:'#KINEMATOQRAFIYA',link:'../muraciet.html'},
+        {name:'#BIZNES',link:'../muraciet.html'},
+        {name:'#İDMAN',link:'../muraciet.html'},
+        {name:'#SMARTFONLAR',link:'../muraciet.html'},
+        {name:'#SƏYAHƏT',link:'../muraciet.html'},
+        {name:'#İT',link:'../muraciet.html'},
+        {name:'#DƏB',link:'../muraciet.html'},
+        {name:'#TARİX',link:'../muraciet.html'},
+        {name:'#ANALITIKA',link:'../muraciet.html'}];
+	demoP = document.getElementById("demo");
+
+	elements.forEach(function(item, index) {
+		demoP.innerHTML = demoP.innerHTML + "<span class='mx-1 my-1 card v display-span'>"+
+        "<a href="+item.link+">"+"<p class='tag-text'>" + item.name + "</p>"+"<a>"+ "</span>";
+	});
+
+    </script>
+
+
+    <div class="main pt-4" id="smth">
+
+        <ul class="cards">
+            @foreach (var item in Model.News)
+            {
+            <li class="cards_item">
+                <span style="display: block;" class="card">
+                    <a href="~/folder/index.html" class="hoverLink" style="text-decoration: none;">
+                        <span style="display: block;" class="card_image">
+                            <img class="card-image"
+                                 src="~/images/@item.Photo.FileName">
+                        </span>
+                        <span style="display: block;" class="card_content">
+                            <h2 class="card_title">@item.Title</h2>
+                            <p class="card_text">
+                                @item.Subtitle
+                            </p>
+                            <p style="font-size: 14px;color: white;">
+                                <i class="far fa-clock"></i> @item.PublishedDate
+                            </p>
+                        </span>
+                    </a>
+                </span>
+            </li>
+            }
+        </ul>
+        <a href="/apply">
+            <span class="my-1" style="display: block;">
+                <p style="text-align: center;">Daha cox xeber oxumaq</p>
+            </span>
+        </a>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("a").on('click', function (event) {
+
+                    if (this.hash !== "") {
+
+                        event.preventDefault();
+
+                        var hash = this.hash;
+
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 30000, function () {
+
+                            window.location.hash = hash;
+                        });
+                    }
+                });
+            });
+
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                crossorigin="anonymous"></script>
+
+</body>
+</html>

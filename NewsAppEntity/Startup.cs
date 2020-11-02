@@ -40,8 +40,9 @@ namespace NewsAppEntity
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddScoped<ICategoryService,CategoryServiceImpl>();
             services.AddScoped<INewsService,NewsServiceImpl>();
-     //       services.AddScoped<IPhotoService,PhotoServiceImpl>();
+            services.AddScoped<IPhotoService,PhotoServiceImpl>();
             services.AddScoped<IUserService,UserServiceImpl>();
+            services.AddScoped<ISearchService,SearchServiceImpl>();
             services.AddAutoMapper(typeof(Startup));
         }
 

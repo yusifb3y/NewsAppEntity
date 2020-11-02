@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+nav {
+    background-color: rgb(63, 63, 151);
+}
+
+.time-lg {
+    color: gray;
+    font-size: 14px;
+  
+}
+
+.time {
+    color: gray;
+    font-size: 10px;
+}
+
+/* Font */
+
+
+/* Design */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #ecf9ff;
+}
+
+body {
+  
+    color: #272727;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+   
+    letter-spacing: 0;
+}
+
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#news-header {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.news_img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+a {
+    color: black;
+   
+}
+
+a:hover {
+    color: #276f91;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+
+.cards_item {
+    display: block;
+}
+
+@media (min-width: 40rem) {
+    .cards_item {
+        width: 100%;
+    }
+}
+
+@media (min-width: 56rem) {
+    .cards_item {
+        width: 100%;
+    }
+}
+
+.card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card_content {
+    margin-top: 8px;
+    /* background: linear-gradient(to bottom left, rgb(211, 211, 211) 40%, #6D8CF3 100%); */
+}
+
+.card_title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    margin: 0px;
+}
+
+.card_text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+}
+
+.card_image img {
+    height: auto;
+    max-width: 100%;
+}
+
+@media(max-width:768px) {
+    .card_image img {
+        height: auto;
+        width: 720px;
+    }
+}
+
+.news_header {
+    color: black;
+}
+
+.news_header h3 {
+    text-align: center;
+}

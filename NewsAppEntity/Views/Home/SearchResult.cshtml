@@ -1,0 +1,11 @@
+﻿@model IEnumerable<News>;
+
+@{ int newsCount = Model.Count();}
+@if (newsCount == 0)
+{
+    <h1>Hec bir xeber tapilmadi</h1>
+}
+@if (newsCount > 0)
+{
+    <h1>@newsCount xeber tapildi</h1>
+}
